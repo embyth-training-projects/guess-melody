@@ -1,6 +1,6 @@
 # :notes: Project Guess Melody by [HTML Academy](https://htmlacademy.ru)
 
-[![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
+[![Netlify Status][netlify-image]][netlify-url][![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 Code by: [Rostyslav Miniukov](https://github.com/embyth/)
 
@@ -39,6 +39,8 @@ Code by: [Rostyslav Miniukov](https://github.com/embyth/)
 └── README.md         # project documents
 ```
 
+[netlify-image]: https://api.netlify.com/api/v1/badges/7e6d96b4-f686-4218-b8f2-6f9221a231e8/deploy-status
+[netlify-url]: https://app.netlify.com/sites/guess-melody/deploys
 [travis-image]: https://travis-ci.org/embyth/guess-melody.svg?branch=master
 [travis-url]: https://travis-ci.org/embyth/guess-melody
 [dependency-image]: https://david-dm.org/embyth/guess-melody/dev-status.svg?style=flat-square
