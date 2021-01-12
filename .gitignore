@@ -3,6 +3,7 @@
 Thumbs.db
 
 # Файлы редактора
+.history/
 .idea
 *.sublime*
 .vscode
@@ -10,4 +11,7 @@ Thumbs.db
 # Вспомогательные файлы
 *.log*
 node_modules/
-.history/
+
+# Файлы сборки
+public/bundle.js
+public/bundle.js.map
