@@ -4,7 +4,7 @@
 
 Code by: [Rostyslav Miniukov](https://github.com/embyth/)
 
-[Project Demo](https://embyth.github.io/)
+[Project Demo](https://guess-melody.netlify.app/)
 
 ---
 

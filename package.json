@@ -1,5 +1,6 @@
 {
   "name": "guess-melody",
+  "homepage": "https://guess-melody.netlify.app/",
   "version": "1.0.0",
   "private": true,
   "description": "Online music game with built-in audio player, where you need to guess melody genres and artists",
