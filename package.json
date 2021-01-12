@@ -1,0 +1,25 @@
+{
+  "name": "guess-melody",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Online music game with built-in audio player, where you need to guess melody genres and artists",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:embyth/guess-melody.git"
+  },
+  "bugs": {
+    "url": "https://github.com/embyth/guess-melody/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "eslint": "eslint src/**/*.js",
+    "test": "npm run eslint"
+  },
+  "devDependencies": {
+    "eslint": "5.13.0",
+    "eslint-config-htmlacademy": "0.5.2"
+  },
+  "engines": {
+    "node": "12"
+  }
+}
