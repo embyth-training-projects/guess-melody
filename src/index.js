@@ -10,6 +10,7 @@ const Settings = {
 ReactDOM.render(
     <App
       errorsCount={Settings.ERROR_COUNT}
+      onPlayButtonClick={() => {}}
     />,
     document.querySelector(`#root`)
 );
