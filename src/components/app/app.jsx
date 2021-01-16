@@ -1,17 +1,20 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 
-const playButtonClickHanler = () => {};
+class App extends PureComponent {
+  render() {
+    const {errorsCount} = this.props;
 
-const App = (props) => {
-  const {errorsCount} = props;
-
-  return (
-    <WelcomeScreen errorsCount={errorsCount} onPlayButtonClick={playButtonClickHanler} />
-  );
-};
+    return (
+      <WelcomeScreen
+        errorsCount={errorsCount}
+        onPlayButtonClick={() => {}}
+      />
+    );
+  }
+}
 
 App.propTypes = {
   errorsCount: PropTypes.number.isRequired,
