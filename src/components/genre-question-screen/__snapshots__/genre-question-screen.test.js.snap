@@ -19,15 +19,15 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
       className="track"
     >
       <button
-        className="track__button track__button--play"
+        className="track__button track__button--pause"
+        disabled={true}
+        onClick={[Function]}
         type="button"
       />
       <div
         className="track__status"
       >
-        <audio
-          src="https://upload.wikimedia.org/wikipedia/ru/2/20/Highway_to_Hell-Part.ogg"
-        />
+        <audio />
       </div>
       <div
         className="game__answer"
@@ -54,14 +54,14 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     >
       <button
         className="track__button track__button--play"
+        disabled={true}
+        onClick={[Function]}
         type="button"
       />
       <div
         className="track__status"
       >
-        <audio
-          src="https://upload.wikimedia.org/wikipedia/en/4/4f/Dua_Lipa_Blow_Your_Mind_%28Mwah%29_sample.ogg"
-        />
+        <audio />
       </div>
       <div
         className="game__answer"
@@ -88,14 +88,14 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     >
       <button
         className="track__button track__button--play"
+        disabled={true}
+        onClick={[Function]}
         type="button"
       />
       <div
         className="track__status"
       >
-        <audio
-          src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Stlouisblues-9bars.ogg"
-        />
+        <audio />
       </div>
       <div
         className="game__answer"
@@ -122,14 +122,14 @@ exports[`GenreQuestionScreen is rendered correctly 1`] = `
     >
       <button
         className="track__button track__button--play"
+        disabled={true}
+        onClick={[Function]}
         type="button"
       />
       <div
         className="track__status"
       >
-        <audio
-          src="https://upload.wikimedia.org/wikipedia/en/1/14/The_Chain_by_Fleetwood_Mac.ogg"
-        />
+        <audio />
       </div>
       <div
         className="game__answer"
