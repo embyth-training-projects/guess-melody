@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import WelcomeScreen from "../welcome-screen/welcome-screen";
+import GameScreen from "../game-screen/game-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 
@@ -23,15 +24,23 @@ class App extends PureComponent {
 
     switch (currentQuestion.type) {
       case GameType.GENRE:
-        return <GenreQuestionScreen
-          question={currentQuestion}
-          onAnswerSubmit={onUserAnswer}
-        />;
+        return (
+          <GameScreen type={question.type}>
+            <GenreQuestionScreen
+              question={currentQuestion}
+              onAnswerSubmit={onUserAnswer}
+            />
+          </GameScreen>
+        );
       case GameType.ARTIST:
-        return <ArtistQuestionScreen
-          question={currentQuestion}
-          onAnswerSubmit={onUserAnswer}
-        />;
+        return (
+          <GameScreen type={question.type}>
+            <ArtistQuestionScreen
+              question={currentQuestion}
+              onAnswerSubmit={onUserAnswer}
+            />
+          </GameScreen>
+        );
     }
 
     return null;
