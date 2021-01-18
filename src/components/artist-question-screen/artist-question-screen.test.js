@@ -35,6 +35,7 @@ it(`ArtistQuestionScreen is rendered correctly`, () => {
         <ArtistQuestionScreen
           question={question}
           onAnswerSubmit={() => {}}
+          renderPlayer={() => {}}
         />, {
           createNodeMock: () => {
             return {};

@@ -6,7 +6,12 @@ import GameScreen from "../game-screen/game-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 
+import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player";
+
 import {GameType} from "../../const";
+
+const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
+const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
   static getScreen(question, props, onUserAnswer) {
@@ -26,7 +31,7 @@ class App extends PureComponent {
       case GameType.GENRE:
         return (
           <GameScreen type={currentQuestion.type}>
-            <GenreQuestionScreen
+            <GenreQuestionScreenWrapped
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}
             />
@@ -35,7 +40,7 @@ class App extends PureComponent {
       case GameType.ARTIST:
         return (
           <GameScreen type={currentQuestion.type}>
-            <ArtistQuestionScreen
+            <ArtistQuestionScreenWrapped
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}
             />
