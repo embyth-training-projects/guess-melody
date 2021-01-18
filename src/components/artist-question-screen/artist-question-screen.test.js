@@ -35,7 +35,11 @@ it(`ArtistQuestionScreen is rendered correctly`, () => {
         <ArtistQuestionScreen
           question={question}
           onAnswerSubmit={() => {}}
-        />
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     )
     .toJSON();
 

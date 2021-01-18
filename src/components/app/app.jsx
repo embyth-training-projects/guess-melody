@@ -25,7 +25,7 @@ class App extends PureComponent {
     switch (currentQuestion.type) {
       case GameType.GENRE:
         return (
-          <GameScreen type={question.type}>
+          <GameScreen type={currentQuestion.type}>
             <GenreQuestionScreen
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}
@@ -34,7 +34,7 @@ class App extends PureComponent {
         );
       case GameType.ARTIST:
         return (
-          <GameScreen type={question.type}>
+          <GameScreen type={currentQuestion.type}>
             <ArtistQuestionScreen
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}

@@ -17,7 +17,11 @@ it(`AudioPlayer is rendered correctly`, () => {
         <AudioPlayer
           isPlaying={false}
           src={song.src}
-        />
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
   expect(tree).toMatchSnapshot();
