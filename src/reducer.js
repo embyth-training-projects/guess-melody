@@ -10,6 +10,13 @@ export const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
 };
 
+export const ActionCreator = {
+  incrementStep: () => ({
+    type: ActionType.INCREMENT_STEP,
+    payload: 1,
+  }),
+};
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INCREMENT_STEP:

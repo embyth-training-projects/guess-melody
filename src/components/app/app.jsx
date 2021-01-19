@@ -1,5 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {ActionCreator} from "../../reducer";
 
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import GameScreen from "../game-screen/game-screen";
@@ -14,18 +17,16 @@ const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
-  static getScreen(question, props, onUserAnswer) {
-    if (question === -1) {
-      const {errorsCount} = props;
+  _getScreen() {
+    const {step, errorsCount, questions, onUserAnswer, onPlayButtonClick} = this.props;
+    const currentQuestion = questions[step];
 
+    if (step === -1 || step >= questions.length) {
       return <WelcomeScreen
         errorsCount={errorsCount}
-        onPlayButtonClick={onUserAnswer}
+        onPlayButtonClick={onPlayButtonClick}
       />;
     }
-
-    const {questions} = props;
-    const currentQuestion = questions[question];
 
     switch (currentQuestion.type) {
       case GameType.GENRE:
@@ -51,39 +52,32 @@ class App extends PureComponent {
     return null;
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      gameQuestionIndex: -1,
-    };
-
-    this._userAnswerHandler = this._userAnswerHandler.bind(this);
-  }
-
   render() {
-    const {gameQuestionIndex} = this.state;
-
-    return App.getScreen(gameQuestionIndex, this.props, this._userAnswerHandler);
-  }
-
-  _userAnswerHandler() {
-    const {questions} = this.props;
-
-    this.setState((prevState) => {
-      const nextIndex = prevState.gameQuestionIndex + 1;
-      const isEnd = nextIndex >= questions.length;
-
-      return {
-        gameQuestionIndex: isEnd ? -1 : nextIndex
-      };
-    });
+    return this._getScreen();
   }
 }
 
 App.propTypes = {
   errorsCount: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
+  onUserAnswer: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
+  step: PropTypes.number.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  step: state.step,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onPlayButtonClick() {
+    dispatch(ActionCreator.incrementStep());
+  },
+
+  onUserAnswer() {
+    dispatch(ActionCreator.incrementStep());
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

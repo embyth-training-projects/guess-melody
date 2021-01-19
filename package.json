@@ -15,7 +15,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "test": "npm run eslint && jest"
   },
   "devDependencies": {
