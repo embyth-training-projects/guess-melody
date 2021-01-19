@@ -1,7 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 import {App} from "./app";
+
+const mockStore = configureStore([]);
 
 const questions = [
   {
@@ -55,15 +59,21 @@ const questions = [
 
 describe(`Render App`, () => {
   it(`Render WelcomeScreen`, () => {
+    const store = mockStore({
+      mistakes: 0,
+    });
+
     const tree = renderer
     .create(
-        <App
-          errorsCount={3}
-          questions={questions}
-          onUserAnswer={() => {}}
-          onPlayButtonClick={() => {}}
-          step={-1}
-        />
+        <Provider store={store}>
+          <App
+            errorsCount={3}
+            questions={questions}
+            onUserAnswer={() => {}}
+            onPlayButtonClick={() => {}}
+            step={-1}
+          />
+        </Provider>
     )
     .toJSON();
 
@@ -71,15 +81,21 @@ describe(`Render App`, () => {
   });
 
   it(`Render GenreQuestionScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
     const tree = renderer
     .create(
-        <App
-          errorsCount={3}
-          questions={questions}
-          onUserAnswer={() => {}}
-          onPlayButtonClick={() => {}}
-          step={0}
-        />, {
+        <Provider store={store}>
+          <App
+            errorsCount={3}
+            questions={questions}
+            onUserAnswer={() => {}}
+            onPlayButtonClick={() => {}}
+            step={0}
+          />
+        </Provider>, {
           createNodeMock: () => {
             return {};
           }
@@ -91,15 +107,21 @@ describe(`Render App`, () => {
   });
 
   it(`Render ArtistQuestionScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
     const tree = renderer
     .create(
-        <App
-          errorsCount={3}
-          questions={questions}
-          onUserAnswer={() => {}}
-          onPlayButtonClick={() => {}}
-          step={1}
-        />, {
+        <Provider store={store}>
+          <App
+            errorsCount={3}
+            questions={questions}
+            onUserAnswer={() => {}}
+            onPlayButtonClick={() => {}}
+            step={1}
+          />
+        </Provider>, {
           createNodeMock: () => {
             return {};
           }
