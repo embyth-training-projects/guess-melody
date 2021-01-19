@@ -18,12 +18,12 @@ const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
   _getScreen() {
-    const {step, errorsCount, questions, onUserAnswer, onPlayButtonClick} = this.props;
+    const {step, maxMistakes, questions, onUserAnswer, onPlayButtonClick} = this.props;
     const currentQuestion = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return <WelcomeScreen
-        errorsCount={errorsCount}
+        errorsCount={maxMistakes}
         onPlayButtonClick={onPlayButtonClick}
       />;
     }
@@ -58,7 +58,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
@@ -67,6 +67,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -75,7 +77,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep(question, answer));
+    dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(ActionCreator.incrementStep());
   },
 });
 
