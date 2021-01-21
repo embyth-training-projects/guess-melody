@@ -48,7 +48,7 @@ const withAudioPlayer = (Component) => {
 
       audio.oncanplaythrough = null;
       audio.onplay = null;
-      audio.onpaste = null;
+      audio.onpause = null;
       audio.ontimeupdate = null;
       audio.src = ``;
     }

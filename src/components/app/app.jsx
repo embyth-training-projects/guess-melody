@@ -9,12 +9,13 @@ import GameScreen from "../game-screen/game-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 
-import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player";
+import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 
 import {GameType} from "../../const";
 
-const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
-const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
+const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
   _getScreen() {
