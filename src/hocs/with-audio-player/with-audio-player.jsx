@@ -1,36 +1,87 @@
-import React, {PureComponent} from "react";
-
-import AudioPlayer from "../../components/audio-player/audio-player";
+import React, {PureComponent, createRef} from "react";
+import PropTypes from "prop-types";
 
 const withAudioPlayer = (Component) => {
   class WithAudioPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
+      this._audioRef = createRef();
+
       this.state = {
-        activePlayerId: 0,
+        progress: 0,
+        isLoading: true,
+        isPlaying: props.isPlaying,
       };
+
+      this.playButtonClickHandler = this.playButtonClickHandler.bind(this);
+    }
+
+    componentDidMount() {
+      const {src} = this.props;
+
+      const audio = this._audioRef.current;
+
+      audio.src = src;
+
+      audio.oncanplaythrough = () => this.setState({isLoading: false});
+
+      audio.onplay = () => this.setState({isPlaying: true});
+
+      audio.onpause = () => this.setState({isPlaying: false});
+
+      audio.ontimeupdate = () => this.setState({progress: Math.floor(audio.currentTime)});
+    }
+
+    componentDidUpdate() {
+      const audio = this._audioRef.current;
+
+      if (this.props.isPlaying) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    componentWillUnmount() {
+      const audio = this._audioRef.current;
+
+      audio.oncanplaythrough = null;
+      audio.onplay = null;
+      audio.onpaste = null;
+      audio.ontimeupdate = null;
+      audio.src = ``;
     }
 
     render() {
-      const {activePlayerId} = this.state;
+      const {isLoading, isPlaying} = this.state;
 
       return (
         <Component
           {...this.props}
-          renderPlayer={(src, id) => (
-            <AudioPlayer
-              src={src}
-              isPlaying={id === activePlayerId}
-              onPlayButtonClick={() => this.setState({activePlayerId: activePlayerId === id ? -1 : id})}
-            />
-          )}
-        />
+          isLoading={isLoading}
+          isPlaying={isPlaying}
+          onPlayButtonClick={this.playButtonClickHandler}
+        >
+          <audio ref={this._audioRef} />
+        </Component>
       );
+    }
+
+    playButtonClickHandler() {
+      const {onPlayButtonClick} = this.props;
+      const {isPlaying} = this.state;
+
+      this.setState({isPlaying: !isPlaying});
+      onPlayButtonClick();
     }
   }
 
-  WithAudioPlayer.propTypes = {};
+  WithAudioPlayer.propTypes = {
+    isPlaying: PropTypes.bool.isRequired,
+    src: PropTypes.string.isRequired,
+    onPlayButtonClick: PropTypes.func.isRequired,
+  };
 
   return WithAudioPlayer;
 };
