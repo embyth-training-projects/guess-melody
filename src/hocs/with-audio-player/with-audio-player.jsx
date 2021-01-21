@@ -9,12 +9,8 @@ const withAudioPlayer = (Component) => {
       this._audioRef = createRef();
 
       this.state = {
-        progress: 0,
         isLoading: true,
-        isPlaying: props.isPlaying,
       };
-
-      this.playButtonClickHandler = this.playButtonClickHandler.bind(this);
     }
 
     componentDidMount() {
@@ -25,18 +21,12 @@ const withAudioPlayer = (Component) => {
       audio.src = src;
 
       audio.oncanplaythrough = () => this.setState({isLoading: false});
-
-      audio.onplay = () => this.setState({isPlaying: true});
-
-      audio.onpause = () => this.setState({isPlaying: false});
-
-      audio.ontimeupdate = () => this.setState({progress: Math.floor(audio.currentTime)});
     }
 
     componentDidUpdate() {
       const audio = this._audioRef.current;
 
-      if (this.state.isPlaying) {
+      if (this.props.isPlaying) {
         audio.play();
       } else {
         audio.pause();
@@ -47,33 +37,20 @@ const withAudioPlayer = (Component) => {
       const audio = this._audioRef.current;
 
       audio.oncanplaythrough = null;
-      audio.onplay = null;
-      audio.onpause = null;
-      audio.ontimeupdate = null;
       audio.src = ``;
     }
 
     render() {
-      const {isLoading, isPlaying} = this.state;
+      const {isLoading} = this.state;
 
       return (
         <Component
           {...this.props}
           isLoading={isLoading}
-          isPlaying={isPlaying}
-          onPlayButtonClick={this.playButtonClickHandler}
         >
           <audio ref={this._audioRef} />
         </Component>
       );
-    }
-
-    playButtonClickHandler() {
-      const {onPlayButtonClick} = this.props;
-      const {isPlaying} = this.state;
-
-      this.setState({isPlaying: !isPlaying});
-      onPlayButtonClick();
     }
   }
 
