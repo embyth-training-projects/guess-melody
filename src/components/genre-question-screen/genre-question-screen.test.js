@@ -31,7 +31,9 @@ it(`GenreQuestionScreen is rendered correctly`, () => {
       <GenreQuestionScreen
         question={question}
         onAnswerSubmit={() => {}}
+        onAnswerChange={() => {}}
         renderPlayer={() => {}}
+        userAnswers={[false, false, false, false]}
       />
     ), {
       createNodeMock: () => {

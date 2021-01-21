@@ -4,17 +4,8 @@ import PropTypes from "prop-types";
 import {GameType} from "../../const";
 
 class GenreQuestionScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      answers: [false, false, false, false],
-    };
-  }
-
   render() {
-    const {question, onAnswerSubmit, renderPlayer} = this.props;
-    const {answers: userAnswers} = this.state;
+    const {question, onAnswerSubmit, onAnswerChange, renderPlayer, userAnswers} = this.props;
     const {answers, genre} = question;
 
     return (
@@ -23,7 +14,7 @@ class GenreQuestionScreen extends PureComponent {
         <form className="game__tracks"
           onSubmit={(evt) => {
             evt.preventDefault();
-            onAnswerSubmit(question, this.state.answers);
+            onAnswerSubmit();
           }}
         >
 
@@ -38,9 +29,7 @@ class GenreQuestionScreen extends PureComponent {
                   onChange={(evt) => {
                     const value = evt.target.checked;
 
-                    this.setState({
-                      answers: [...userAnswers.slice(0, index), value, ...userAnswers.slice(index + 1)],
-                    });
+                    onAnswerChange(index, value);
                   }}
                 />
                 <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
@@ -67,7 +56,9 @@ GenreQuestionScreen.propTypes = {
     ).isRequired,
   }).isRequired,
   onAnswerSubmit: PropTypes.func.isRequired,
+  onAnswerChange: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
+  userAnswers: PropTypes.arrayOf(PropTypes.bool).isRequired,
 };
 
 export default GenreQuestionScreen;

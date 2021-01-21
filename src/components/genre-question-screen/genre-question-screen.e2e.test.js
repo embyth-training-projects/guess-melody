@@ -38,6 +38,7 @@ it(`When user answers genre question form is not sent`, () => {
     onAnswerSubmit={onAnswerSubmit}
     question={question}
     renderPlayer={() => {}}
+    userAnswers={[false, false, false, false]}
   />);
 
   const form = genreQuestion.find(`form`);
@@ -59,6 +60,8 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
     onAnswerSubmit={onAnswerSubmit}
     question={question}
     renderPlayer={() => {}}
+    onAnswerChange={() => {}}
+    userAnswers={userAnswer}
   />);
 
   const form = genreQuestion.find(`form`);
@@ -71,6 +74,7 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
 
   expect(onAnswerSubmit.mock.calls[0][0]).toMatchObject(question);
   expect(onAnswerSubmit.mock.calls[0][1]).toMatchObject(userAnswer);
+  expect(onAnswerSubmit.mock.calls[0][0]).toEqual(void 0);
 
   expect(
       genreQuestion.find(`input`).map((item) => item.prop(`checked`))
