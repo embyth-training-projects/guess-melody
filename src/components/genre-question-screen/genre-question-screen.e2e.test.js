@@ -1,5 +1,5 @@
 import React from "react";
-import {configure, shallow} from "enzyme";
+import {configure, shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import GenreQuestionScreen from "./genre-question-screen";
@@ -36,6 +36,7 @@ it(`When user answers genre question form is not sent`, () => {
   const onAnswerSubmit = jest.fn();
   const genreQuestion = shallow(<GenreQuestionScreen
     onAnswerSubmit={onAnswerSubmit}
+    onAnswerChange={() => {}}
     question={question}
     renderPlayer={() => {}}
     userAnswers={[false, false, false, false]}
@@ -56,7 +57,7 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
   const onAnswerSubmit = jest.fn((...args) => [...args]);
   const userAnswer = [false, true, false, false];
 
-  const genreQuestion = shallow(<GenreQuestionScreen
+  const genreQuestion = mount(<GenreQuestionScreen
     onAnswerSubmit={onAnswerSubmit}
     question={question}
     renderPlayer={() => {}}
@@ -72,8 +73,6 @@ it(`User answer passed to callback is consistent with "userAnswer" prop`, () => 
 
   expect(onAnswerSubmit).toHaveBeenCalledTimes(1);
 
-  expect(onAnswerSubmit.mock.calls[0][0]).toMatchObject(question);
-  expect(onAnswerSubmit.mock.calls[0][1]).toMatchObject(userAnswer);
   expect(onAnswerSubmit.mock.calls[0][0]).toEqual(void 0);
 
   expect(
