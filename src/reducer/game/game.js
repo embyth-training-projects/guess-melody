@@ -1,13 +1,10 @@
-import questions from "./mock/questions";
-
-import {extend} from "./utils";
-import {GameType} from "./const";
+import {extend} from "../../utils";
+import {GameType} from "../../const";
 
 const initialState = {
   step: -1,
   maxMistakes: 3,
   mistakes: 0,
-  questions,
 };
 
 export const ActionType = {
