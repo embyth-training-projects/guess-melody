@@ -6,9 +6,10 @@ import {ActionCreator} from "../../reducer/game/game";
 import {AuthrizationStatus} from "../../reducer/user/user";
 import {getStep, getMistakes, getMaxMistakes} from "../../reducer/game/selectors";
 import {getQuestions} from "../../reducer/data/selectors";
-import {getAuthrizationStatus} from "../../reducer/user/selectors";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
 import {Operation as UserOperation} from "../../reducer/user/user";
 
+import AuthScreen from "../auth-screen/auth-screen";
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import GameScreen from "../game-screen/game-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
@@ -96,7 +97,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthrizationStatus(state),
+  authorizationStatus: getAuthorizationStatus(state),
   step: getStep(state),
   maxMistakes: getMaxMistakes(state),
   mistakes: getMistakes(state),
