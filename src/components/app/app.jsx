@@ -2,7 +2,12 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from "../../reducer/game/game";
+import {AuthrizationStatus} from "../../reducer/user/user";
+import {getStep, getMistakes, getMaxMistakes} from "../../reducer/game/selectors";
+import {getQuestions} from "../../reducer/data/selectors";
+import {getAuthrizationStatus} from "../../reducer/user/selectors";
+import {Operation as UserOperation} from "../../reducer/user/user";
 
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import GameScreen from "../game-screen/game-screen";
@@ -21,7 +26,7 @@ const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
 class App extends PureComponent {
   _getScreen() {
-    const {step, maxMistakes, mistakes, questions, onUserAnswer, onPlayButtonClick, resetGame} = this.props;
+    const {authorizationStatus, login, step, maxMistakes, mistakes, questions, onUserAnswer, onPlayButtonClick, resetGame} = this.props;
     const currentQuestion = questions[step];
 
     if (step === -1) {
@@ -79,6 +84,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   maxMistakes: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
@@ -89,13 +96,18 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  maxMistakes: state.maxMistakes,
-  mistakes: state.mistakes,
-  questions: state.questions,
+  authorizationStatus: getAuthrizationStatus(state),
+  step: getStep(state),
+  maxMistakes: getMaxMistakes(state),
+  mistakes: getMistakes(state),
+  questions: getQuestions(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+
   onPlayButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
