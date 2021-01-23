@@ -62,6 +62,8 @@ class App extends PureComponent {
           />
         );
       }
+
+      return null;
     }
 
     switch (currentQuestion.type) {
@@ -69,6 +71,7 @@ class App extends PureComponent {
         return (
           <GameScreen type={currentQuestion.type}>
             <GenreQuestionScreenWrapped
+              key={step}
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}
             />
@@ -78,6 +81,7 @@ class App extends PureComponent {
         return (
           <GameScreen type={currentQuestion.type}>
             <ArtistQuestionScreenWrapped
+              key={step}
               question={currentQuestion}
               onAnswerSubmit={onUserAnswer}
             />
