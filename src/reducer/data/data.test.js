@@ -75,7 +75,7 @@ it(`Reducer should update questions by laod questions`, () => {
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /questions`, () => {
     const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn;
+    const dispatch = jest.fn();
     const questionLoader = Operation.loadQuestions();
 
     apiMock
