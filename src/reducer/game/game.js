@@ -8,6 +8,7 @@ const initialState = {
 };
 
 export const ActionType = {
+  GO_TO_WELCOME: `GO_TO_WELCOME`,
   INCREMENT_STEP: `INCREMENT_STEP`,
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   RESET: `RESET`,
@@ -54,6 +55,13 @@ export const ActionCreator = {
       payload: null,
     };
   },
+
+  goToWelcome: () => {
+    return {
+      type: ActionType.GO_TO_WELCOME,
+      payload: null,
+    };
+  },
 };
 
 export const reducer = (state = initialState, action) => {
@@ -71,6 +79,11 @@ export const reducer = (state = initialState, action) => {
     case ActionType.RESET:
       return extend(initialState, {
         step: 0,
+      });
+
+    case ActionType.GO_TO_WELCOME:
+      return extend(initialState, {
+        step: -1,
       });
   }
 
