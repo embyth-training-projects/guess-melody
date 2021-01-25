@@ -1,6 +1,5 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PropTypes from "prop-types";
 
 import withActivePlayer from "./with-active-player";
 
@@ -12,13 +11,6 @@ const MockComponent = (props) => {
       {children}
     </div>
   );
-};
-
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 const MockComponentWrapped = withActivePlayer(MockComponent);

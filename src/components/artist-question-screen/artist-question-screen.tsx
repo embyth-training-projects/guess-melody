@@ -1,7 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-
-import {GameType} from "../../const";
 
 const ArtistQuestionScreen = (props) => {
   const {question, onAnswerSubmit, renderPlayer} = props;
@@ -34,24 +31,6 @@ const ArtistQuestionScreen = (props) => {
       </form>
     </section>
   );
-};
-
-ArtistQuestionScreen.propTypes = {
-  question: PropTypes.shape({
-    type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-    song: PropTypes.shape({
-      artist: PropTypes.string.isRequired,
-      src: PropTypes.string.isRequired,
-    }).isRequired,
-    answers: PropTypes.arrayOf(
-        PropTypes.shape({
-          picture: PropTypes.string.isRequired,
-          artist: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-  }).isRequired,
-  onAnswerSubmit: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default ArtistQuestionScreen;

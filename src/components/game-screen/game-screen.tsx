@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -7,7 +6,7 @@ import Mistakes from "../mistakes/mistakes";
 import {getMistakes} from "../../reducer/game/selectors";
 import {ActionCreator} from "../../reducer/game/game";
 
-import {GameType, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
 
 const GameScreen = (props) => {
   const {type, children, goToWelcome, mistakes} = props;
@@ -38,16 +37,6 @@ const GameScreen = (props) => {
 
     </section>
   );
-};
-
-GameScreen.propTypes = {
-  type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  mistakes: PropTypes.number.isRequired,
-  goToWelcome: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

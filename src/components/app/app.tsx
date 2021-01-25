@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Router, Route, Switch} from "react-router-dom";
 
@@ -117,18 +116,6 @@ class App extends React.PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  maxMistakes: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired,
-  questions: PropTypes.array.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
-  step: PropTypes.number.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),

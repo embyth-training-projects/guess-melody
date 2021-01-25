@@ -1,7 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-
-import {GameType} from "../../const";
 
 const withUserAnswer = (Component) => {
   class WithUserAnswer extends React.PureComponent {
@@ -47,20 +44,6 @@ const withUserAnswer = (Component) => {
       );
     }
   }
-
-  WithUserAnswer.propTypes = {
-    question: PropTypes.shape({
-      type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-      genre: PropTypes.string.isRequired,
-      answers: PropTypes.arrayOf(
-          PropTypes.shape({
-            src: PropTypes.string.isRequired,
-            genre: PropTypes.string.isRequired,
-          })
-      ).isRequired,
-    }).isRequired,
-    onAnswerSubmit: PropTypes.func.isRequired,
-  };
 
   return WithUserAnswer;
 };
