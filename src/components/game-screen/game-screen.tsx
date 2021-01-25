@@ -7,8 +7,16 @@ import {getMistakes} from "../../reducer/game/selectors";
 import {ActionCreator} from "../../reducer/game/game";
 
 import {AppRoute} from "../../const";
+import {GameType} from "../../types";
 
-const GameScreen = (props) => {
+interface Props {
+  type: GameType;
+  children: React.ReactNode;
+  goToWelcome: () => void;
+  mistakes: number;
+}
+
+const GameScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {type, children, goToWelcome, mistakes} = props;
 
   return (

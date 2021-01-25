@@ -21,13 +21,29 @@ import PrivateRoute from "../private-route/private-route";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 
-import {GameType, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
 import history from "../../history";
+
+import {GameType, QuestionGenre, QuestionArtist} from "../../types";
+
+interface Props {
+  authorizationStatus: string;
+  login: () => void;
+  maxMistakes: number;
+  mistakes: number;
+  questions: Question[];
+  onUserAnswer: () => void;
+  onPlayButtonClick: () => void;
+  resetGame: () => void;
+  step: number;
+}
+
+type Question = QuestionArtist | QuestionGenre;
 
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends React.PureComponent {
+class App extends React.PureComponent<Props, {}> {
   _getScreen() {
     const {authorizationStatus, step, maxMistakes, mistakes, questions, onUserAnswer, onPlayButtonClick} = this.props;
     const currentQuestion = questions[step];

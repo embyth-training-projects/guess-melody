@@ -1,11 +1,23 @@
 import * as React from "react";
 
+interface Props {
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  src: string;
+}
+
+interface State {
+  isLoading: boolean;
+}
+
 const withAudioPlayer = (Component) => {
-  class WithAudioPlayer extends React.PureComponent {
+  class WithAudioPlayer extends React.PureComponent<Props, State> {
+    private audioRef: React.RefObject<HTMLAudioElement>;
+
     constructor(props) {
       super(props);
 
-      this._audioRef = React.createRef();
+      this.audioRef = React.createRef();
 
       this.state = {
         isLoading: true,
@@ -15,7 +27,7 @@ const withAudioPlayer = (Component) => {
     componentDidMount() {
       const {src} = this.props;
 
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.src = src;
 
@@ -23,7 +35,7 @@ const withAudioPlayer = (Component) => {
     }
 
     componentDidUpdate() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       if (this.props.isPlaying) {
         audio.play();
@@ -33,7 +45,7 @@ const withAudioPlayer = (Component) => {
     }
 
     componentWillUnmount() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.oncanplaythrough = null;
       audio.src = ``;
@@ -47,7 +59,7 @@ const withAudioPlayer = (Component) => {
           {...this.props}
           isLoading={isLoading}
         >
-          <audio ref={this._audioRef} />
+          <audio ref={this.audioRef} />
         </Component>
       );
     }

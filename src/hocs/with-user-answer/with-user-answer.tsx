@@ -1,7 +1,29 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
+import {QuestionGenre} from "../../types";
+
+type Answers = boolean[];
+
+interface Props {
+  question: QuestionGenre;
+  onAnswerSubmit: (question: QuestionGenre, answers: Answers) => void;
+}
+
+interface State {
+  answers: Answers;
+}
+
+interface InjectingProps {
+  userAnswer: Answers;
+  onAnswerChange: (answerIndex: number) => void;
+  onAnswerSubmit: () => void;
+}
 
 const withUserAnswer = (Component) => {
-  class WithUserAnswer extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectingProps>;
+
+  class WithUserAnswer extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

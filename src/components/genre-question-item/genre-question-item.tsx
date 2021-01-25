@@ -1,6 +1,16 @@
 import * as React from "react";
 
-class GenreQuestionItem extends React.PureComponent {
+import {AnswerGenre} from "../../types";
+
+interface Props {
+  answer: AnswerGenre;
+  id: number;
+  onAnswerChange: (id: number, value: boolean) => void;
+  renderPlayer: (src: string, id: number) => React.ReactNode;
+  userAnswer: boolean;
+}
+
+class GenreQuestionItem extends React.PureComponent<Props, null> {
   render() {
     const {answer, id, onAnswerChange, renderPlayer, userAnswer} = this.props;
 

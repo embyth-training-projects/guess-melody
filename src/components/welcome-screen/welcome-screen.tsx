@@ -1,6 +1,11 @@
 import * as React from "react";
 
-const WelcomeScreen = (props) => {
+interface Props {
+  errorsCount: number;
+  onPlayButtonClick: () => void;
+}
+
+const WelcomeScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {errorsCount, onPlayButtonClick} = props;
 
   return (
