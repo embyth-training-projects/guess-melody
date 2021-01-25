@@ -1,12 +1,12 @@
-import React, {PureComponent, createRef} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 const withAudioPlayer = (Component) => {
-  class WithAudioPlayer extends PureComponent {
+  class WithAudioPlayer extends React.PureComponent {
     constructor(props) {
       super(props);
 
-      this._audioRef = createRef();
+      this._audioRef = React.createRef();
 
       this.state = {
         isLoading: true,

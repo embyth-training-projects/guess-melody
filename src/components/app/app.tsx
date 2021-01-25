@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Router, Route, Switch} from "react-router-dom";
@@ -28,7 +28,7 @@ import history from "../../history";
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends PureComponent {
+class App extends React.PureComponent {
   _getScreen() {
     const {authorizationStatus, step, maxMistakes, mistakes, questions, onUserAnswer, onPlayButtonClick} = this.props;
     const currentQuestion = questions[step];
