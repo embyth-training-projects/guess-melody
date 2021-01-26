@@ -1,41 +1,44 @@
-import React from "react";
+import * as React from "react";
 import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as Adapter from "enzyme-adapter-react-16";
 
 import ArtistQuestionScreen from "./artist-question-screen";
+import {GameType, QuestionArtist} from "../../types";
+import {noop} from "../../utils";
 
 configure({adapter: new Adapter()});
 
-const mock = {
-  question: {
-    type: `artist`,
-    song: {
-      artist: ``,
-      src: ``,
+const question: QuestionArtist = {
+  type: GameType.ARTIST,
+  song: {
+    artist: ``,
+    src: ``,
+  },
+  answers: [
+    {
+      picture: `pic-one`,
+      artist: `one`,
     },
-    answers: [
-      {
-        picture: `pic-one`,
-        artist: `one`,
-      },
-      {
-        picture: `pic-two`,
-        artist: `two`,
-      },
-      {
-        picture: `pic-three`,
-        artist: `three`,
-      },
-      {
-        picture: `pic-four`,
-        artist: `four`,
-      },
-    ]
-  }
+    {
+      picture: `pic-two`,
+      artist: `two`,
+    },
+    {
+      picture: `pic-three`,
+      artist: `three`,
+    },
+    {
+      picture: `pic-four`,
+      artist: `four`,
+    },
+  ]
+};
+
+const mockEvent = {
+  preventDefault: noop,
 };
 
 it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
-  const {question} = mock;
   const onAnswerSubmit = jest.fn();
   const userAnswer = {
     artist: `one`,
@@ -45,12 +48,12 @@ it(`Click on user answer should pass to the callback data-object from which this
   const screen = shallow(<ArtistQuestionScreen
     onAnswerSubmit={onAnswerSubmit}
     question={question}
-    renderPlayer={() => {}}
+    renderPlayer={() => null}
   />);
 
   const answerInputOne = screen.find(`input`).at(0);
 
-  answerInputOne.simulate(`change`, {preventDefault() {}});
+  answerInputOne.simulate(`change`, mockEvent);
 
   expect(onAnswerSubmit).toHaveBeenCalledTimes(1);
 

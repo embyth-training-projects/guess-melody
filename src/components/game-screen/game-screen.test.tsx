@@ -1,10 +1,11 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {GameScreen} from "./game-screen";
-import {GameType} from "../../const";
+import {GameType} from "../../types";
 import history from "../../history";
+import {noop} from "../../utils";
 
 const children = <div className="children-component" />;
 
@@ -13,7 +14,11 @@ describe(`GemScreen component render correctly`, () => {
     const tree = renderer
       .create(
           <Router history={history}>
-            <GameScreen type={GameType.ARTIST} mistakes={3} goToWelcome={() => {}}>
+            <GameScreen
+              type={GameType.ARTIST}
+              mistakes={3}
+              goToWelcome={noop}
+            >
               {children}
             </GameScreen>
           </Router>
@@ -26,7 +31,11 @@ describe(`GemScreen component render correctly`, () => {
     const tree = renderer
       .create(
           <Router history={history}>
-            <GameScreen type={GameType.GENRE} mistakes={3} goToWelcome={() => {}}>
+            <GameScreen
+              type={GameType.GENRE}
+              mistakes={3}
+              goToWelcome={noop}
+            >
               {children}
             </GameScreen>
           </Router>

@@ -1,16 +1,15 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 
 import WelcomeScreen from "./welcome-screen";
+import {noop} from "../../utils";
 
 it(`Should WelcomeScreen render correctly`, () => {
-  const onPlayButtonClick = jest.fn();
-
   const tree = renderer
     .create(
         <WelcomeScreen
           errorsCount={3}
-          onPlayButtonClick={onPlayButtonClick}
+          onPlayButtonClick={noop}
         />
     )
     .toJSON();

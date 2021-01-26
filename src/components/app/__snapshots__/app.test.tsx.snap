@@ -258,6 +258,7 @@ exports[`Render App Render AuthScreen 1`] = `
   </form>
   <button
     className="replay"
+    onClick={[Function]}
     type="button"
   >
     Сыграть ещё раз
@@ -645,6 +646,7 @@ exports[`Render App Render WinScreen 1`] = `
   </form>
   <button
     className="replay"
+    onClick={[Function]}
     type="button"
   >
     Сыграть ещё раз

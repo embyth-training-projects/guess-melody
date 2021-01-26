@@ -1,8 +1,8 @@
-import  * as React from "react";
+import * as React from "react";
 
 interface Props {
-  isLoading: boolean,
-  isPlaying: boolean,
+  isLoading: boolean;
+  isPlaying: boolean;
   onPlayButtonClick: () => void;
 }
 export default class AudioPlayer extends React.PureComponent<Props, {}> {

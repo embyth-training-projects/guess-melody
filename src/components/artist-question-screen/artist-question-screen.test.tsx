@@ -1,10 +1,12 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 
 import ArtistQuestionScreen from "./artist-question-screen";
+import {GameType, QuestionArtist} from "../../types";
+import {noop} from "../../utils";
 
-const question = {
-  type: `artist`,
+const question: QuestionArtist = {
+  type: GameType.ARTIST,
   song: {
     artist: `Linkin Park`,
     src: `https://upload.wikimedia.org/wikipedia/en/4/47/Crawling_%28Linkin_Park_song_-_sample%29.ogg`,
@@ -34,8 +36,8 @@ it(`ArtistQuestionScreen is rendered correctly`, () => {
     .create(
         <ArtistQuestionScreen
           question={question}
-          onAnswerSubmit={() => {}}
-          renderPlayer={() => {}}
+          onAnswerSubmit={noop}
+          renderPlayer={() => null}
         />, {
           createNodeMock: () => {
             return {};

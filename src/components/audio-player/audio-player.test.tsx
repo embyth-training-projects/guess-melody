@@ -1,23 +1,15 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 
 import AudioPlayer from "./audio-player";
-
-const mock = {
-  song: {
-    src: `https://upload.wikimedia.org/wikipedia/ru/2/20/Highway_to_Hell-Part.ogg`,
-  }
-};
+import {noop} from "../../utils";
 
 it(`AudioPlayer is rendered correctly`, () => {
-  const {song} = mock;
-
   const tree = renderer
     .create(<AudioPlayer
       isPlaying={false}
       isLoading={true}
-      src={song.src}
-      onPlayButtonClick={() => {}}
+      onPlayButtonClick={noop}
     >
       <audio />
     </AudioPlayer>, {

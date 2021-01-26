@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -7,14 +7,14 @@ import {App} from "./app";
 
 import NameSpace from "../../reducer/name-space";
 import {AuthorizationStatus} from "../../reducer/user/user";
+import {GameType, QuestionArtist, QuestionGenre} from "../../types";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
-const noop = () => {};
-
-const questions = [
+const questions: (QuestionArtist | QuestionGenre)[] = [
   {
-    type: `genre`,
+    type: GameType.GENRE,
     genre: `rock`,
     answers: [
       {
@@ -36,7 +36,7 @@ const questions = [
     ]
   },
   {
-    type: `artist`,
+    type: GameType.ARTIST,
     song: {
       artist: `Linkin Park`,
       src: `https://upload.wikimedia.org/wikipedia/en/4/47/Crawling_%28Linkin_Park_song_-_sample%29.ogg`,
@@ -84,6 +84,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={-1}
           />
         </Provider>
@@ -111,6 +112,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={0}
           />
         </Provider>, {
@@ -142,6 +144,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={1}
           />
         </Provider>, {
@@ -173,6 +176,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={1}
           />
         </Provider>, {
@@ -207,6 +211,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={3}
           />
         </Provider>, {
@@ -241,6 +246,7 @@ describe(`Render App`, () => {
             questions={questions}
             onUserAnswer={noop}
             onPlayButtonClick={noop}
+            resetGame={noop}
             step={3}
           />
         </Provider>, {
