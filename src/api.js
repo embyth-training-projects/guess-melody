@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const END_POINT = `https://5.react.pages.academy/guess-melody`;
+const END_POINT = `https://6.react.pages.academy/guess-melody`;
 const REQUEST_TIMEOUT = 5000;
 
 const Error = {
